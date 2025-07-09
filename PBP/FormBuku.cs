@@ -283,5 +283,41 @@ namespace PBP
                 MessageBox.Show("Kategori hanya boleh huruf dan spasi.", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void btn_Analyze_Click(object sender, EventArgs e)
+        {
+            {
+                var heavyQuery = @"
+                SET STATISTICS IO ON;
+                SET STATISTICS TIME ON;
+                SELECT judul, pengarang, penerbit, tahun_terbit 
+                FROM dbo.Buku 
+                WHERE tahun_terbit >= 2020";
+
+                AnalyzeQuery(heavyQuery);
+            }
+        }
+
+        private void Conn_InfoMessage(object sender, SqlInfoMessageEventArgs e)
+        {
+            MessageBox.Show(e.Message, "STATISTICS INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void AnalyzeQuery(string query)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+
+                // Menangkap hasil STATISTICS dari SQL Server
+                conn.InfoMessage += (s, e) =>
+                {
+                    MessageBox.Show(e.Message, "STATISTICS INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                };
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.ExecuteReader().Close(); // hanya butuh hasil statistik, bukan isi datanya
+            }
+        }
     }
 }

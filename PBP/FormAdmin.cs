@@ -81,5 +81,13 @@ namespace PBP
                 }
             }
         }
+
+        private void btnChart_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormChart formChart = new FormChart();
+            formChart.Show();
+        }
+
     }
 }

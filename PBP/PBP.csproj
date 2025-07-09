@@ -149,6 +149,12 @@
     <Compile Include="FormBuku.Designer.cs">
       <DependentUpon>FormBuku.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChart.Designer.cs">
+      <DependentUpon>FormChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBuku.resx">
       <DependentUpon>FormBuku.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChart.resx">
+      <DependentUpon>FormChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
